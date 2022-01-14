@@ -1,6 +1,11 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { audioFiles, currentStep, paymentInfoAtoms, videoFiles } from "../recoil/atoms";
+import {
+  audioFiles,
+  currentStep,
+  paymentInfoAtoms,
+  videoFiles,
+} from "../recoil/atoms";
 
 export default function Final() {
   const audioFile = useRecoilValue(audioFiles);
@@ -11,8 +16,8 @@ export default function Final() {
 
   const handleBack = () => {
     setCurrent(current - 1);
-  }; 
-   const handleSubmit = () => {
+  };
+  const handleSubmit = () => {
     setCurrent(current + 1);
   };
   return (
@@ -22,39 +27,21 @@ export default function Final() {
       </button>
 
       <div className="row text-center">
-        <div>
-        <h3>name: {paymentInfo?.name}</h3>
-        <h4>price: {paymentInfo?.amount}</h4>
+        <div className=" my-3">
+          <h3>name: {paymentInfo?.name}</h3>
+          <h4>price: {paymentInfo?.amount}</h4>
+          <p>{paymentInfo?.description}</p>
         </div>
-        
+
         <div className="py-4">
-          {audioFile && videoFile ? (
-            <>
-              <p>{audioFile.originalFile.name}</p>
-              {audioFile ? (
-                <audio controls>
-                  <source src={audioFile.url} />
-                  Your browser does not support the audio element.
-                </audio>
-              ) : null}
-              <br />
-              <br />
-              <br />
-              <p>{videoFile.originalFile.name}</p>
-              {videoFile ? (
-                <video
-                  width="520"
-                  height="240"
-                  controls
-                  autostart
-                  autoPlay={false}
-                  src={videoFile.url}
-                />
-              ) : null}
-            </>
-          ) : (
-            <></>
-          )}
+          <iframe
+            src="https://player.vimeo.com/video/56187728?h=a994f796b4"
+            width="640"
+            height="360"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
         {/* <button onClick={handleSubmit} type="submit" class="btn btn-primary">
           Submit
